@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<project name = "CountThrees_Java" default = "clean" basedir=".">
+	<property name="src" value="."/>
+	<property name="build" value="build"/>	
+	
+	<target name="init">
+		<mkdir dir="${build}"/>
+		<echo>Initializing directories</echo>
+	</target>
+
+	<target name="compile" depends="init">
+		<!-- Compile the hava code -->
+		<javac includeantruntime="false" srcdir="${src}" destdir="${build}"/>
+		<echo>Compiling the files for the CountThrees_Java application</echo>
+	</target>
+	<target name="run" depends="compile, init" description="run the CountThrees_Java application">
+		<echo>Running the compiled application</echo>
+		<java classname="CountThrees">
+			<classpath path="${build}"></classpath>			
+		</java>
+	</target>
+	<target name="clean" depends="run" description="remove intermediate files">
+		<echo>Cleaning the directories</echo>
+		<delete file="${build}/CountThrees.class"/>	
+		<delete file="${build}/ReadInt32BitLE.class"/>
+	</target>
+</project>
